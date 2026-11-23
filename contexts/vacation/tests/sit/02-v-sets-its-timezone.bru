@@ -1,0 +1,23 @@
+meta {
+  name: V sets its timezone
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Configuration
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenV}}
+}
+
+body:json {
+  {"timezone":"UTC"}
+}
+
+assert {
+  res.status: eq 200
+}

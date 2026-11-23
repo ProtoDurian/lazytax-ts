@@ -1,0 +1,8 @@
+id: ctx_f6r3d8
+name: friend
+needs: [account.v1, habit.v1, notification.v1]
+provides: [friend.v1]
+uses: [postgres.main]
+# Owns two LazyTax controllers: /Friend and /FriendStake ("tell my friends if I miss").
+http: { prefix: /api/v1 }
+mcp: { prefix: friend }

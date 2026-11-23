@@ -1,0 +1,23 @@
+meta {
+  name: complete-again-404
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subB}}/{{checkVersionId}}/executions
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 404
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@lazytax/penalty",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/penalty-contract": "workspace:*",
+    "@lazytax/charity-contract": "workspace:*",
+    "@lazytax/payment-contract": "workspace:*",
+    "@lazytax/check-contract": "workspace:*"
+  }
+}

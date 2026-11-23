@@ -1,0 +1,20 @@
+meta {
+  name: D reads itself
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/User/Me/All
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.principal.id: eq {{subD}}
+}

@@ -1,0 +1,24 @@
+meta {
+  name: webhook with a wrong signature is 403
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Payment/webhook
+  body: json
+  auth: none
+}
+
+headers {
+  x-timestamp: 1700000000000
+  x-signature: 0000
+}
+
+body:json {
+  {"id":"evt_bad","name":"payment_consent.verified","data":{"object":{"id":"cst_evil","status":"VERIFIED","customer_id":"{{customerA}}"}}}
+}
+
+assert {
+  res.status: eq 403
+}

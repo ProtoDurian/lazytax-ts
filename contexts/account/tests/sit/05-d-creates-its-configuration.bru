@@ -1,0 +1,27 @@
+meta {
+  name: D creates its configuration
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Configuration/{{subD}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+body:json {
+  {"timezone":"Asia/Singapore"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("configId", res.body.id);
+}

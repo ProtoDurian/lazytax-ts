@@ -1,0 +1,19 @@
+meta {
+  name: ending a future window is 400
+  type: http
+  seq: 11
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/Vacation/{{subV}}/{{vacationId}}/end-today
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenV}}
+}
+
+assert {
+  res.status: eq 400
+}

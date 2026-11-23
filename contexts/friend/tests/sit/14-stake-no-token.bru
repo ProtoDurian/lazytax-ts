@@ -1,0 +1,15 @@
+meta {
+  name: stake with no token is 401
+  type: http
+  seq: 18
+}
+
+get {
+  url: {{baseUrl}}/api/v1/FriendStake/sit-friend-b/00000000-0000-0000-0000-000000000000
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+}

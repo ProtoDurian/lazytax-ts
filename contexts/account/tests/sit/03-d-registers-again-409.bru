@@ -1,0 +1,24 @@
+meta {
+  name: D registers again 409
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/User
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 409
+  res.body.type: eq urn:lazytax:problem:entity_conflict
+}

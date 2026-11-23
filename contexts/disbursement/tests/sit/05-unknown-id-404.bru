@@ -1,0 +1,19 @@
+meta {
+  name: unknown route is 404
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/disbursement/00000000-0000-0000-0000-000000000000
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 404
+}

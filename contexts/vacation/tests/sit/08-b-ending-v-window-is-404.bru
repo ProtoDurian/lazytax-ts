@@ -1,0 +1,20 @@
+meta {
+  name: B ending V window is 404
+  type: http
+  seq: 8
+}
+
+patch {
+  url: {{baseUrl}}/api/v1/Vacation/{{subB}}/{{vacationId}}/end-today
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 404
+  res.body.type: eq urn:lazytax:problem:entity_not_found
+}

@@ -1,0 +1,26 @@
+meta {
+  name: A now has a verified consent
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Payment/{{subA}}/consent?purpose=penalty
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("linked", function () {
+    expect(res.body.hasPaymentConsent).to.equal(true);
+    expect(res.body.status).to.equal("Verified");
+  });
+}

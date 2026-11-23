@@ -1,0 +1,20 @@
+meta {
+  name: P starts free
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenP}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.tier: eq free
+}

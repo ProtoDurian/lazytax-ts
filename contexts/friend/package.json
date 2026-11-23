@@ -1,0 +1,17 @@
+{
+  "name": "@lazytax/friend",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/account-contract": "workspace:*",
+    "@lazytax/check-contract": "workspace:*",
+    "@lazytax/habit-contract": "workspace:*",
+    "@lazytax/notification-contract": "workspace:*",
+    "@lazytax/friend-contract": "workspace:*"
+  }
+}

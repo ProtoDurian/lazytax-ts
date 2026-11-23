@@ -1,0 +1,20 @@
+meta {
+  name: mark all read
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}/read-all
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.count: eq 0
+}

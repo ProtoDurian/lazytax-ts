@@ -1,0 +1,28 @@
+meta {
+  name: plan.get over MCP
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{baseUrl}}/mcp
+  body: json
+  auth: bearer
+}
+
+headers {
+  accept: application/json, text/event-stream
+}
+
+auth:bearer {
+  token: {{tokenP}}
+}
+
+body:json {
+  {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"plan.get","arguments":{"userId":"sit-plan-p"}}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.result.isError: isUndefined
+}

@@ -1,0 +1,23 @@
+meta {
+  name: register A
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/User
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{regTokenA}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 200
+}

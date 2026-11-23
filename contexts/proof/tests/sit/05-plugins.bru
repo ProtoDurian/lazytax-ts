@@ -1,0 +1,23 @@
+meta {
+  name: list the plugins
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Proof/plugins
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("manual and nfc are offered, always bound", function () { const k = res.body.map(p => p.key); expect(k).to.include("manual"); expect(k).to.include("nfc"); expect(res.body.find(p => p.key === "manual").alwaysBound).to.equal(true); });
+}

@@ -1,0 +1,19 @@
+meta {
+  name: another user's path is 403
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

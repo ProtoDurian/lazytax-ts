@@ -1,0 +1,30 @@
+meta {
+  name: A creates a payment customer
+  type: http
+  seq: 1
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Payment/{{subA}}/customers
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("customerA", res.body.customerId);
+}
+
+tests {
+  test("returns a customer and a client secret", function () {
+    expect(res.body.customerId).to.be.a("string");
+    expect(res.body.clientSecret).to.be.a("string");
+  });
+}

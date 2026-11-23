@@ -1,0 +1,23 @@
+meta {
+  name: a short tag id is 400
+  type: http
+  seq: 12
+}
+
+put {
+  url: {{baseUrl}}/api/v1/NfcTag/{{subA}}/short
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "habitId": "{{habitId}}" }
+}
+
+assert {
+  res.status: eq 400
+}

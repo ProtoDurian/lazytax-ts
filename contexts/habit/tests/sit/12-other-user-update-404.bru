@@ -1,0 +1,23 @@
+meta {
+  name: other-user-update-404
+  type: http
+  seq: 12
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Habit/{{subB}}/{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  {"task":"SIT run more","daysOfWeek":["Monday"],"notificationTime":"07:30:00","stake":"0","timezone":"Asia/Singapore","enabled":true}
+}
+
+assert {
+  res.status: eq 404
+}

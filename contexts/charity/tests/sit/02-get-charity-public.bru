@@ -1,0 +1,15 @@
+meta {
+  name: anyone reads a charity without a token
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity/{{charityId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

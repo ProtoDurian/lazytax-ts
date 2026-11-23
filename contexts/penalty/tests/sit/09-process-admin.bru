@@ -1,0 +1,19 @@
+meta {
+  name: an admin runs the drain
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Penalty/admin/process
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,23 @@
+meta {
+  name: admin sets the causes of a charity
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Charity/{{charityId}}/causes
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"keys":["{{causeKey}}"]}
+}
+
+assert {
+  res.status: eq 204
+}

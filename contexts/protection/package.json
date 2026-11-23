@@ -1,0 +1,15 @@
+{
+  "name": "@lazytax/protection",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/protection-contract": "workspace:*",
+    "@lazytax/account-contract": "workspace:*",
+    "@lazytax/plan-contract": "workspace:*"
+  }
+}

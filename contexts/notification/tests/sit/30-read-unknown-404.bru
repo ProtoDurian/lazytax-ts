@@ -1,0 +1,19 @@
+meta {
+  name: mark read of an unknown id is 404
+  type: http
+  seq: 30
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}/11111111-1111-1111-1111-111111111111/read
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 404
+}

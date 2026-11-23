@@ -1,0 +1,27 @@
+meta {
+  name: admin creates a charity
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Charity
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  { "name": "SIT Charity", "countries": ["SG"] }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("charityId", res.body.id);
+}

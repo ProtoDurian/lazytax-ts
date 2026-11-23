@@ -1,0 +1,19 @@
+meta {
+  name: other-user-routine-404
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Routine/{{subB}}/{{routineId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 404
+}

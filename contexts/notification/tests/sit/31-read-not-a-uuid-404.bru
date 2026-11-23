@@ -1,0 +1,19 @@
+meta {
+  name: mark read of a non-uuid is 404
+  type: http
+  seq: 31
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}/not-a-uuid/read
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 404
+}

@@ -1,0 +1,19 @@
+meta {
+  name: search-habits
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}?task=sit
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}

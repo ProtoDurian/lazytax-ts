@@ -1,0 +1,23 @@
+meta {
+  name: admin updates a charity
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Charity/{{charityId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"name":"SIT Fund Renamed"}
+}
+
+assert {
+  res.status: eq 200
+}

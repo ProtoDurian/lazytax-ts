@@ -1,0 +1,25 @@
+meta {
+  name: B accepts
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-b/requests/sit-friend-a/accept
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("has a username", function () {
+    expect(res.body.username).to.be.a("string");
+  });
+}

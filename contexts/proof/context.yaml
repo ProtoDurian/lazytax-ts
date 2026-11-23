@@ -1,0 +1,7 @@
+id: ctx_p7m2x4
+name: proof
+needs: [account.v1, plan.v1, habit.v1, check.v1]
+provides: [proof.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1 }
+mcp: { prefix: proof }

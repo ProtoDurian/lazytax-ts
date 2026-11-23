@@ -1,0 +1,15 @@
+meta {
+  name: charities are found by cause key
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity?causeKey={{causeKey}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,25 @@
+meta {
+  name: V lists its windows
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Vacation/{{subV}}?year=2099
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenV}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("one window", function () {
+    expect(res.getBody()).to.have.lengthOf(1);
+  });
+}

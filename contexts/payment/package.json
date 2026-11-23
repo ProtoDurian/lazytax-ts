@@ -1,0 +1,14 @@
+{
+  "name": "@lazytax/payment",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/payment-contract": "workspace:*",
+    "@lazytax/notification-contract": "workspace:*"
+  }
+}

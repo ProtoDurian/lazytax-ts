@@ -1,0 +1,15 @@
+meta {
+  name: supported countries are listed
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity/supported-countries
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

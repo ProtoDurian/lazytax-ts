@@ -1,0 +1,25 @@
+meta {
+  name: A lists friends
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("one friend", function () {
+    expect(res.body.length).to.equal(1);
+  });
+}

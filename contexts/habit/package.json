@@ -1,0 +1,15 @@
+{
+  "name": "@lazytax/habit",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/habit-contract": "workspace:*",
+    "@lazytax/plan-contract": "workspace:*",
+    "@lazytax/charity-contract": "workspace:*"
+  }
+}

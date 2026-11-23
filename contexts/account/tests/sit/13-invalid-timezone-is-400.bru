@@ -1,0 +1,24 @@
+meta {
+  name: invalid timezone is 400
+  type: http
+  seq: 13
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Configuration/{{configId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+body:json {
+  {"timezone":"Mars/Base"}
+}
+
+assert {
+  res.status: eq 400
+  res.body.type: eq urn:lazytax:problem:validation_error
+}

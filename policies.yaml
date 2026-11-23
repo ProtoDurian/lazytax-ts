@@ -1,0 +1,4 @@
+# Kernel policies, shaped like nitroso's (field: scope|roles, type: any|all, target: [...]).
+# Built in, not listed here: public (no token), registered (any valid token).
+admin: { field: scope, type: any, target: [admin] }
+admin-or-service: { field: roles, type: any, target: [service, admin] }

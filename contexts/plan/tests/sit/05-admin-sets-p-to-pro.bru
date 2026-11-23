@@ -1,0 +1,24 @@
+meta {
+  name: admin sets P to pro
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}/tier
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"tier":"pro"}
+}
+
+assert {
+  res.status: eq 200
+  res.body.tier: eq pro
+}

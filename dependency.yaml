@@ -1,0 +1,5 @@
+# Infrastructure this service (the deployed app) uses. One per service, not per context.
+# A context's context.yaml `uses:` must name an entry here, or the start fails.
+postgres.main:
+  kind: postgres
+  description: The one LazyTax database; one schema per context, one transaction across contexts.

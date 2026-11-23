@@ -1,0 +1,19 @@
+meta {
+  name: the strava webhook is 404 while Strava is off
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Strava/webhook
+  body: json
+  auth: none
+}
+
+body:json {
+  { "object_type": "activity", "aspect_type": "create", "object_id": 1, "owner_id": 1, "event_time": 1772366340 }
+}
+
+assert {
+  res.status: eq 404
+}

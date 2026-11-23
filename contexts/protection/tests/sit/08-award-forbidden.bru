@@ -1,0 +1,23 @@
+meta {
+  name: award-weekly as user is 403
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Protection/award-weekly
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+body:json {
+  {"userId": "{{subA}}"}
+}
+
+assert {
+  res.status: eq 403
+}

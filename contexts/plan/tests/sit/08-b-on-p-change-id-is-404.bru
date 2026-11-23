@@ -1,0 +1,20 @@
+meta {
+  name: B on P change id is 404
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Subscription/{{subB}}/changes/{{changeId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 404
+  res.body.type: eq urn:lazytax:problem:entity_not_found
+}

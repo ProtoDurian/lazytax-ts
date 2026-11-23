@@ -1,0 +1,19 @@
+meta {
+  name: a user reads what they owe
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Penalty/{{subA}}/outstanding
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}

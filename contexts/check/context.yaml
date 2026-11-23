@@ -1,0 +1,9 @@
+id: ctx_00u2nt
+name: check
+needs: [account.v1, plan.v1, habit.v1, vacation.v1, protection.v1, charity.v1]
+provides: [check.v1]
+uses: [postgres.main]
+# Two LazyTax controllers: the complete/skip/executions/overview routes of /api/v1/Habit and
+# /api/v1/habit-cron. The routes carry the rest of the path.
+http: { prefix: /api/v1 }
+mcp: { prefix: check }

@@ -1,0 +1,19 @@
+meta {
+  name: unknown purpose is 400
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Payment/{{subA}}/consent?purpose=gift
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 400
+}

@@ -1,0 +1,20 @@
+meta {
+  name: D reads its configuration
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Configuration/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.principal.timezone: eq Asia/Singapore
+}

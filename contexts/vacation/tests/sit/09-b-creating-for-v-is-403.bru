@@ -1,0 +1,23 @@
+meta {
+  name: B creating for V is 403
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Vacation/{{subV}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  {"startDate":"2099-08-01","endDate":"2099-08-02","timezone":"UTC"}
+}
+
+assert {
+  res.status: eq 403
+}

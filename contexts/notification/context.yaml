@@ -1,0 +1,7 @@
+id: ctx_n4t8f2
+name: notification
+needs: [account.v1]
+provides: [notification.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Inbox }
+mcp: { prefix: notification }

@@ -1,0 +1,19 @@
+meta {
+  name: admin reads own inbox
+  type: http
+  seq: 40
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subAdmin}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 200
+}

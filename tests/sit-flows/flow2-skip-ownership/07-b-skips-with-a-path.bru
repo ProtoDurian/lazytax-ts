@@ -1,0 +1,23 @@
+meta {
+  name: user B skips with A's id in the path: 403
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/{{versionId}}/executions/skip
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  { "notes": "not mine" }
+}
+
+assert {
+  res.status: eq 403
+}

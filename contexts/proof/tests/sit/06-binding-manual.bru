@@ -1,0 +1,23 @@
+meta {
+  name: a habit without a binding reports manual
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Proof/{{subA}}/{{habitId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("manual", function () { expect(res.body.pluginKey).to.equal("manual"); });
+}

@@ -1,0 +1,15 @@
+meta {
+  name: charity id that is not a uuid is 404
+  type: http
+  seq: 31
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity/not-a-uuid
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+}

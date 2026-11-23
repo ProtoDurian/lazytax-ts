@@ -1,0 +1,25 @@
+meta {
+  name: B sees the request
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-b/requests
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("one incoming", function () {
+    expect(res.body.incoming.length).to.equal(1);
+  });
+}

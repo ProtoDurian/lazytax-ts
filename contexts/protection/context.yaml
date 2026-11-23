@@ -1,0 +1,7 @@
+id: ctx_p7r2m4
+name: protection
+needs: [account.v1, plan.v1]
+provides: [protection.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Protection }
+mcp: { prefix: protection }

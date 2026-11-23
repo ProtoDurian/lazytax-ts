@@ -1,0 +1,19 @@
+meta {
+  name: delete-habit
+  type: http
+  seq: 16
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/{{habitId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 204
+}

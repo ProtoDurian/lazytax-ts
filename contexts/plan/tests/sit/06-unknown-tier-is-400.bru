@@ -1,0 +1,24 @@
+meta {
+  name: unknown tier is 400
+  type: http
+  seq: 6
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}/tier
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"tier":"gold"}
+}
+
+assert {
+  res.status: eq 400
+  res.body.type: eq urn:lazytax:problem:invalid_subscription_tier
+}

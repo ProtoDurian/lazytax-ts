@@ -1,0 +1,19 @@
+meta {
+  name: no token on a write is 401
+  type: http
+  seq: 20
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Charity
+  body: json
+  auth: none
+}
+
+body:json {
+  {"name":"x"}
+}
+
+assert {
+  res.status: eq 401
+}

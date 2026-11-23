@@ -1,0 +1,31 @@
+meta {
+  name: admin creates a cause
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Causes
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"key":"{{causeKey}}","name":"SIT Cause"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:pre-request {
+  bru.setVar("causeKey", "sit-" + Date.now());
+}
+
+script:post-response {
+  bru.setVar("causeId", res.body.id);
+}

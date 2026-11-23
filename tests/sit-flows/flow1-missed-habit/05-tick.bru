@@ -1,0 +1,19 @@
+meta {
+  name: cron tick before the deadline
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/habit-cron/mark-daily-failures
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 200
+}
