@@ -97,12 +97,12 @@ beforeAll(async () => {
     { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: toolName, arguments: { note: BODY_MARKER } } },
     'mcp-call',
   );
-});
+}, 120_000); // boots Postgres, mock Logto and the app: slower on CI runners
 
 afterAll(async () => {
   await stack?.stop();
   if (dir) rmSync(dir, { recursive: true, force: true });
-});
+}, 60_000);
 
 describe('LOG_FILE', () => {
   it('should write only JSON lines', () => {
