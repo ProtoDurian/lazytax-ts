@@ -1,0 +1,19 @@
+meta {
+  name: B on P subscription is 403
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

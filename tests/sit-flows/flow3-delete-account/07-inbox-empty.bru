@@ -1,0 +1,25 @@
+meta {
+  name: C's inbox is empty
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subC}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenC}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("C has no inbox items left", function () {
+    expect(res.body.length).to.equal(0);
+  });
+}

@@ -1,0 +1,19 @@
+meta {
+  name: accept with no request is 404
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-b/requests/{{subAdmin}}/accept
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 404
+}

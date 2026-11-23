@@ -1,0 +1,29 @@
+meta {
+  name: no execution is settled before its deadline
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/executions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  // Real time cannot pass the deadline here (check never opens a day already past it). The
+  // missed -> failed execution -> pending penalty -> charge -> inbox part runs with a movable
+  // clock in tests/integration/flow-missed-habit.test.ts.
+  test("today's check is still open: no failed execution yet", function () {
+    const rows = res.body.filter((e) => e.habitVersionId === bru.getVar("versionId"));
+    expect(rows.filter((e) => e.status === "failed").length).to.equal(0);
+  });
+}

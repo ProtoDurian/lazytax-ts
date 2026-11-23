@@ -1,0 +1,7 @@
+id: ctx_a7c2m9
+name: account
+needs: []
+provides: [account.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1 }
+mcp: { prefix: account }

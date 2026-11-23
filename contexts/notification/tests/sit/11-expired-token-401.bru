@@ -1,0 +1,19 @@
+meta {
+  name: expired token is 401
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenExpired}}
+}
+
+assert {
+  res.status: eq 401
+}

@@ -1,0 +1,19 @@
+meta {
+  name: B has no payment customer: 404
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Payment/{{subB}}/consent
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenB}}
+}
+
+assert {
+  res.status: eq 404
+}

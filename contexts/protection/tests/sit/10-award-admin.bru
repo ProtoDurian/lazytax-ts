@@ -1,0 +1,24 @@
+meta {
+  name: award-weekly as admin
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Protection/award-weekly
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenAdmin}}
+}
+
+body:json {
+  {"userId": "{{subA}}"}
+}
+
+assert {
+  res.status: eq 200
+  res.body.awards: eq 0
+}

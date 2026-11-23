@@ -1,0 +1,27 @@
+meta {
+  name: V creates a window
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Vacation/{{subV}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenV}}
+}
+
+body:json {
+  {"startDate":"2099-07-01","endDate":"2099-07-05","timezone":"UTC"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("vacationId", res.body.id);
+}

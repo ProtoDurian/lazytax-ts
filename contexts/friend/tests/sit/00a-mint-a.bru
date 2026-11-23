@@ -1,0 +1,23 @@
+meta {
+  name: mint a token with claims for A
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{logtoUrl}}/token
+  body: json
+  auth: none
+}
+
+body:json {
+  { "sub": "sit-friend-a", "claims": { "username": "sitfrienda", "email": "sitfrienda@example.test", "email_verified": true } }
+}
+
+script:post-response {
+  bru.setVar("regTokenA", res.body.access_token);
+}
+
+assert {
+  res.status: eq 200
+}

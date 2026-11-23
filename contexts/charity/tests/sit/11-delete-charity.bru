@@ -1,0 +1,19 @@
+meta {
+  name: admin deletes a charity
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/Charity/{{charityId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 204
+}

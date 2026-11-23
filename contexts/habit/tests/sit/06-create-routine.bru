@@ -1,0 +1,27 @@
+meta {
+  name: create-routine
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Routine/{{subA}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {"name":"SIT morning"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("routineId", res.body.id);
+}

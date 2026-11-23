@@ -1,0 +1,7 @@
+id: ctx_v3k5w8
+name: vacation
+needs: [account.v1, plan.v1]
+provides: [vacation.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Vacation }
+mcp: { prefix: vacation }

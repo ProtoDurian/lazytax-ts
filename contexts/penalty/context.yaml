@@ -1,0 +1,7 @@
+id: ctx_w61d72
+name: penalty
+needs: [charity.v1, payment.v1]
+provides: [penalty.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Penalty }
+mcp: { prefix: penalty }

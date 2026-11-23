@@ -1,0 +1,23 @@
+meta {
+  name: other-user-skip-404
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/{{checkVersionId}}/executions/skip
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 404
+}

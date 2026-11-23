@@ -1,0 +1,34 @@
+{
+  "name": "lazytax-ts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "LazyTax API on Bun, built as bounded contexts wired by a kernel",
+  "type": "module",
+  "module": "src/index.ts",
+  "workspaces": [
+    "src/kernel",
+    "contexts/*",
+    "contexts/*/contract"
+  ],
+  "scripts": {
+    "postinstall": "bun tools/gen.ts",
+    "gen": "bun tools/gen.ts",
+    "start": "bun src/index.ts api",
+    "policies": "bun tools/policies.ts",
+    "boundaries": "bun tools/boundaries.ts",
+    "mock-logto": "bun tools/mock-logto.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.1",
+    "@lazytax/account-contract": "workspace:*",
+    "@lazytax/plan-contract": "workspace:*",
+    "@lazytax/vacation-contract": "workspace:*",
+    "@types/bun": "^1.3.14",
+    "@types/node": "^26.0.1",
+    "knip": "^6.23.0",
+    "typescript": "^6.0.3"
+  }
+}

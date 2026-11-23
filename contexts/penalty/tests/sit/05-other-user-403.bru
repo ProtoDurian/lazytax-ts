@@ -1,0 +1,19 @@
+meta {
+  name: another user's id in the path is 403
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Penalty/{{subA}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

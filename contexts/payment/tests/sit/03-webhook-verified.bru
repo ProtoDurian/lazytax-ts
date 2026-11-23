@@ -1,0 +1,39 @@
+meta {
+  name: Airwallex webhook links A's penalty consent
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Payment/webhook
+  body: text
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:text {
+  {{webhookBody}}
+}
+
+script:pre-request {
+  // Signed like Airwallex: HMAC-SHA256(secret, x-timestamp + raw body), hex. The app's dev secret.
+  const CryptoJS = require("crypto-js");
+  const raw = JSON.stringify({
+    id: "evt_sit_1",
+    name: "payment_consent.verified",
+    data: { object: { id: "cst_sit_" + bru.getEnvVar("subA"), status: "VERIFIED",
+      customer_id: bru.getVar("customerA"), merchant_trigger_reason: "unscheduled" } },
+  });
+  const ts = String(Date.now());
+  const secret = bru.getEnvVar("paymentWebhookSecret") || "dev-airwallex-webhook-secret";
+  req.setBody(raw);
+  req.setHeader("x-timestamp", ts);
+  req.setHeader("x-signature", CryptoJS.HmacSHA256(ts + raw, secret).toString(CryptoJS.enc.Hex));
+}
+
+assert {
+  res.status: eq 204
+}

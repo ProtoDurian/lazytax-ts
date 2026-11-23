@@ -1,0 +1,23 @@
+meta {
+  name: sign up
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/User
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "idToken": "{{tokenA}}", "accessToken": "{{tokenA}}" }
+}
+
+assert {
+  res.status: eq 200
+}

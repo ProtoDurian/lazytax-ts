@@ -1,0 +1,23 @@
+meta {
+  name: friending yourself is 400
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/requests
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+body:json {
+  {"toUserId":"sit-friend-a"}
+}
+
+assert {
+  res.status: eq 400
+}

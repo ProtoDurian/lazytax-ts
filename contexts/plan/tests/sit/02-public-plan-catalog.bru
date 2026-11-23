@@ -1,0 +1,21 @@
+meta {
+  name: public plan catalog
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Subscription/plans
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("free, pro, ultimate", function () {
+    expect(res.getBody().map((p) => p.key)).to.eql(["free", "pro", "ultimate"]);
+  });
+}

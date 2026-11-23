@@ -1,0 +1,15 @@
+meta {
+  name: anyone searches charities by name
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity?name=sit%20fund&country=GB
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

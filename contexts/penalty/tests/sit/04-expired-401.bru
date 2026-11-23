@@ -1,0 +1,19 @@
+meta {
+  name: an expired token is 401
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Penalty/{{subA}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenExpired}}
+}
+
+assert {
+  res.status: eq 401
+}

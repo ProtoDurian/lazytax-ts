@@ -1,0 +1,113 @@
+version: '3'
+vars:
+  # Every bun test runs through the shared box's slot queue when it exists (2 bun tests per repo).
+  SLOT:
+    sh: f="${LAZYTAX_SLOT:-}"; [ -x "$f" ] && echo "$f bun-ts" || echo ""
+tasks:
+  setup:
+    desc: Install dependencies (also generates src/generated/contexts.ts)
+    cmds:
+      - bun install --frozen-lockfile
+  gen:
+    desc: Regenerate src/generated/contexts.ts
+    cmds:
+      - bun tools/gen.ts
+  lint:
+    desc: Biome lint, 0 warnings
+    cmds:
+      - ./node_modules/.bin/biome lint --error-on-warnings .
+  typecheck:
+    desc: tsc --noEmit over src, tools, tests and contexts
+    cmds:
+      - ./node_modules/.bin/tsc --noEmit
+  deadcode:
+    desc: Knip
+    cmds:
+      - ./node_modules/.bin/knip --config knip.json
+  boundaries:
+    desc: Contexts import only the kernel, their own files and the contracts they need
+    cmds:
+      - bun tools/boundaries.ts
+  policies:
+    desc: Print every route and MCP tool with its policy (fails if any has none)
+    cmds:
+      - bun tools/policies.ts {{.CLI_ARGS}}
+  pg:up:
+    desc: Start (or reuse) the local test Postgres on LAZYTAX_PG_PORT (default 55430)
+    cmds:
+      - bun tools/pg.ts up
+  pg:down:
+    desc: Remove this checkout's test Postgres
+    cmds:
+      - bun tools/pg.ts down
+  test:unit:
+    desc: Unit tests (tests/unit and contexts/*/tests/unit)
+    cmds:
+      - '{{.SLOT}} timeout 300 bun test --config=bunfig.unit.toml tests/unit/ {{.CLI_ARGS}}'
+  test:int:
+    desc: Integration tests against real Postgres (tests/integration and contexts/*/tests/integration)
+    cmds:
+      - bun tools/pg.ts up
+      - '{{.SLOT}} timeout 300 bun test --config=bunfig.int.toml tests/integration/ {{.CLI_ARGS}}'
+  sit:
+    desc: Bruno SIT - Postgres, mock Logto and the app, then every context's collection
+    cmds:
+      - bun tools/sit.ts
+  test:logfile:
+    desc: Start the app with LOG_FILE and assert on the log file
+    cmds:
+      - '{{.SLOT}} timeout 300 bun test --config=bunfig.logfile.toml tests/logfile/'
+  check:
+    desc: Everything - lint, types, knip, boundaries, policies, unit, integration, SIT
+    cmds:
+      - task: lint
+      - task: typecheck
+      - task: deadcode
+      - task: boundaries
+      - bun tools/policies.ts --check
+      - task: test:unit
+      - task: test:int
+      - task: sit
+  ci:lint:
+    desc: CI lint and format - biome, prettier on yaml/json/md, shfmt, actionlint
+    cmds:
+      - task: lint
+      - bun scripts/ci/format.ts
+      - actionlint
+  ci:types:
+    desc: CI types and build - tsc, knip, and a generated-contexts check
+    cmds:
+      - task: typecheck
+      - task: deadcode
+  ci:boundaries:
+    desc: CI boundaries and the policy check (no route without a policy)
+    cmds:
+      - task: boundaries
+      - bun tools/policies.ts --check
+  ci:unit:
+    desc: CI unit tests
+    cmds:
+      - task: test:unit
+  ci:int:
+    desc: CI integration tests (uses TEST_DATABASE_ADMIN_URL when set, else starts Postgres in Docker)
+    cmds:
+      - '[ -n "${TEST_DATABASE_ADMIN_URL:-}" ] || bun tools/pg.ts up'
+      - '{{.SLOT}} timeout 600 bun test --config=bunfig.int.toml tests/integration/'
+  ci:sit:
+    desc: CI SIT (Bruno)
+    cmds:
+      - task: sit
+  ci:logfile:
+    desc: CI log-file test
+    cmds:
+      - task: test:logfile
+  ci:all:
+    desc: Every CI job, in order
+    cmds:
+      - task: ci:lint
+      - task: ci:types
+      - task: ci:boundaries
+      - task: ci:unit
+      - task: ci:int
+      - task: ci:sit
+      - task: ci:logfile

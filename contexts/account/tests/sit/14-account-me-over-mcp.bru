@@ -1,0 +1,28 @@
+meta {
+  name: account.me over MCP
+  type: http
+  seq: 14
+}
+
+post {
+  url: {{baseUrl}}/mcp
+  body: json
+  auth: bearer
+}
+
+headers {
+  accept: application/json, text/event-stream
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+body:json {
+  {"jsonrpc":"2.0","id":1,"method":"tools/call","params":{"name":"account.me","arguments":{}}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.result.isError: isUndefined
+}

@@ -1,0 +1,15 @@
+meta {
+  name: read-all without token is 401
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}/read-all
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+}

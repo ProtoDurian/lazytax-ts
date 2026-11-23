@@ -1,0 +1,29 @@
+meta {
+  name: A asks B
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/requests
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+body:json {
+  {"toUserId":"sit-friend-b"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("outgoing", function () {
+    expect(res.body.relation).to.equal("outgoing");
+  });
+}

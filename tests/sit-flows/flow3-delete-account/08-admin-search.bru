@@ -1,0 +1,25 @@
+meta {
+  name: admin search finds no user C
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/v1/User?id={{subC}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("the user is gone", function () {
+    expect(res.body.length).to.equal(0);
+  });
+}

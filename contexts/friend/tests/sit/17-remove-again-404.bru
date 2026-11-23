@@ -1,0 +1,19 @@
+meta {
+  name: removing again is 404
+  type: http
+  seq: 21
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/sit-friend-b
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+assert {
+  res.status: eq 404
+}

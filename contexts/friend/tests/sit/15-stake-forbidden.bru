@@ -1,0 +1,19 @@
+meta {
+  name: stake on another user path is 403
+  type: http
+  seq: 19
+}
+
+get {
+  url: {{baseUrl}}/api/v1/FriendStake/sit-friend-a/00000000-0000-0000-0000-000000000000
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

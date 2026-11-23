@@ -1,0 +1,23 @@
+meta {
+  name: link an NFC tag to the habit
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/api/v1/NfcTag/{{subA}}/sit-tag-{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "habitId": "{{habitId}}" }
+}
+
+assert {
+  res.status: eq 200
+}

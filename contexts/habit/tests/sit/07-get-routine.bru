@@ -1,0 +1,19 @@
+meta {
+  name: get-routine
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Routine/{{subA}}/{{routineId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,19 @@
+meta {
+  name: other-user-path-403
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

@@ -1,0 +1,7 @@
+id: ctx_d7p4m9
+name: disbursement
+needs: [charity.v1, penalty.v1]
+provides: [disbursement.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/disbursement }
+mcp: { prefix: disbursement }

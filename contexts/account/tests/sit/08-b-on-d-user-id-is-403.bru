@@ -1,0 +1,20 @@
+meta {
+  name: B on D user id is 403
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/v1/User/{{subD}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+  res.body.type: eq urn:lazytax:problem:unauthorized
+}

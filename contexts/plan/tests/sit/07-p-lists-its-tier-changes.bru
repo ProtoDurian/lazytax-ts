@@ -1,0 +1,23 @@
+meta {
+  name: P lists its tier changes
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}/changes
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenP}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("changeId", res.body[0].id);
+}

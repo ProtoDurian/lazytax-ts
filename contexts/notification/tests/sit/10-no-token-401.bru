@@ -1,0 +1,15 @@
+meta {
+  name: no token is 401
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+}

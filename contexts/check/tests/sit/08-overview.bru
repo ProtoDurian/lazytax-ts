@@ -1,0 +1,28 @@
+meta {
+  name: overview
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subB}}/overview
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+tests {
+  // The overview needs the user's configuration (account), which this collection does not create so
+  // it leaves no shared state behind: 200 when another collection configured subB, else 404.
+  test("overview or no configuration", function () {
+    expect([200, 404]).to.include(res.status);
+  });
+  test("habit listed with its streak when configured", function () {
+    if (res.status !== 200) return;
+    const h = res.body.habits.find(function (x) { return x.id === bru.getVar("checkHabitId"); });
+    expect(h.status.currentStreak).to.equal(1);
+  });
+}

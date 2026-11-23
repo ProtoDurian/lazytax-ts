@@ -1,0 +1,19 @@
+meta {
+  name: D is gone
+  type: http
+  seq: 16
+}
+
+get {
+  url: {{baseUrl}}/api/v1/User/Me/All
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenD}}
+}
+
+assert {
+  res.status: eq 404
+}

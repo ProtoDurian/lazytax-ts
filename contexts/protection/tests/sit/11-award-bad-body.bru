@@ -1,0 +1,23 @@
+meta {
+  name: award-weekly with no userId is 400
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Protection/award-weekly
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenAdmin}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 400
+}

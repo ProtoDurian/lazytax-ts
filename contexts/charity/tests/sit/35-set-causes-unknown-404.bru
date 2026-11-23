@@ -1,0 +1,23 @@
+meta {
+  name: setting causes on an unknown charity is 404
+  type: http
+  seq: 35
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Charity/11111111-1111-1111-1111-111111111111/causes
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"keys":[]}
+}
+
+assert {
+  res.status: eq 404
+}

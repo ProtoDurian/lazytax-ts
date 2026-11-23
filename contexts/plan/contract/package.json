@@ -1,0 +1,12 @@
+{
+  "name": "@lazytax/plan-contract",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./v1": "./v1/index.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*"
+  }
+}

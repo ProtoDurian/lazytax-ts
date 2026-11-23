@@ -1,0 +1,19 @@
+meta {
+  name: a user lists own penalties
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Penalty/{{subA}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}

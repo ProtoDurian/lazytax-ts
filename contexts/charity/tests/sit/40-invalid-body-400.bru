@@ -1,0 +1,23 @@
+meta {
+  name: an empty name is 400
+  type: http
+  seq: 40
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Charity
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"name":""}
+}
+
+assert {
+  res.status: eq 400
+}

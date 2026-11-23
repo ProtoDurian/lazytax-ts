@@ -1,0 +1,19 @@
+meta {
+  name: expired-token-401
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subB}}/overview
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenExpired}}
+}
+
+assert {
+  res.status: eq 401
+}

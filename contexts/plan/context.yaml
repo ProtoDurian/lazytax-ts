@@ -1,0 +1,7 @@
+id: ctx_p4n8t1
+name: plan
+needs: []
+provides: [plan.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Subscription }
+mcp: { prefix: plan }

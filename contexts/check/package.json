@@ -1,0 +1,20 @@
+{
+  "name": "@lazytax/check",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/register.ts"
+  },
+  "dependencies": {
+    "@lazytax/kernel": "workspace:*",
+    "@lazytax/check-contract": "workspace:*",
+    "@lazytax/account-contract": "workspace:*",
+    "@lazytax/plan-contract": "workspace:*",
+    "@lazytax/vacation-contract": "workspace:*",
+    "@lazytax/habit-contract": "workspace:*",
+    "@lazytax/protection-contract": "workspace:*",
+    "@lazytax/charity-contract": "workspace:*",
+    "@lazytax/proof-contract": "workspace:*"
+  }
+}

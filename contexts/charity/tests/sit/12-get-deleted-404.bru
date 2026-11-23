@@ -1,0 +1,15 @@
+meta {
+  name: a deleted charity is 404
+  type: http
+  seq: 12
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity/{{charityId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 404
+}

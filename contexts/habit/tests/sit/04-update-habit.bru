@@ -1,0 +1,23 @@
+meta {
+  name: update-habit
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {"task":"SIT run more","daysOfWeek":["Monday"],"notificationTime":"07:30:00","stake":"0","timezone":"Asia/Singapore","enabled":true}
+}
+
+assert {
+  res.status: eq 200
+}

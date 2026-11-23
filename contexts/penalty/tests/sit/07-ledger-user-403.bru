@@ -1,0 +1,19 @@
+meta {
+  name: a user is 403 on the charity ledger
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Penalty/admin/charity-balances
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenA}}
+}
+
+assert {
+  res.status: eq 403
+}

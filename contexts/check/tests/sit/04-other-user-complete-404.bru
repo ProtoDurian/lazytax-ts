@@ -1,0 +1,23 @@
+meta {
+  name: other-user-complete-404
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/{{checkVersionId}}/executions
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {}
+}
+
+assert {
+  res.status: eq 404
+}

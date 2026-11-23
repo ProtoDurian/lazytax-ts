@@ -1,0 +1,23 @@
+meta {
+  name: reorder-habits
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/order
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {"habitIds":["{{habitId}}"]}
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,19 @@
+meta {
+  name: unknown invite is 404
+  type: http
+  seq: 16
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-b/invites/zzzzzzzzzz/accept
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenB}}
+}
+
+assert {
+  res.status: eq 404
+}

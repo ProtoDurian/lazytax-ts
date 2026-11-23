@@ -1,0 +1,24 @@
+meta {
+  name: mint a token for sit-plan-p
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{logtoUrl}}/token
+  body: json
+  auth: none
+}
+
+body:json {
+  {"sub":"sit-plan-p","scope":""}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("tokenP", res.body.access_token);
+  bru.setVar("subP", "sit-plan-p");
+}

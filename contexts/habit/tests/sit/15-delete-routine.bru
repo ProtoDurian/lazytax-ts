@@ -1,0 +1,19 @@
+meta {
+  name: delete-routine
+  type: http
+  seq: 15
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/Routine/{{subA}}/{{routineId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 204
+}

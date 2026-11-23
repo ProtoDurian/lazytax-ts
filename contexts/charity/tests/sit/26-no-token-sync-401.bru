@@ -1,0 +1,15 @@
+meta {
+  name: no token on the sync is 401
+  type: http
+  seq: 26
+}
+
+post {
+  url: {{baseUrl}}/api/v1/charities/sync/pledge
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+}

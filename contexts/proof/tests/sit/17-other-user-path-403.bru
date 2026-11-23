@@ -1,0 +1,19 @@
+meta {
+  name: another user's id in the path is 403
+  type: http
+  seq: 17
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Proof/{{subA}}/{{habitId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

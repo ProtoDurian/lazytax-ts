@@ -1,0 +1,20 @@
+meta {
+  name: P cancels at period end
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}/cancel
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenP}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.cancelAtPeriodEnd: eq true
+}

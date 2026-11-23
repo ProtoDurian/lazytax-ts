@@ -1,0 +1,19 @@
+meta {
+  name: unlinking another user's tag is 404
+  type: http
+  seq: 21
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/NfcTag/{{subB}}/sit-tag-{{habitId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 404
+}

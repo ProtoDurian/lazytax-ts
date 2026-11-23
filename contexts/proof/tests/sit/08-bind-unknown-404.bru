@@ -1,0 +1,23 @@
+meta {
+  name: an unknown plugin is 404
+  type: http
+  seq: 8
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Proof/{{subA}}/{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "pluginKey": "does-not-exist", "settings": "{}" }
+}
+
+assert {
+  res.status: eq 404
+}

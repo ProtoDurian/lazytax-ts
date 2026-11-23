@@ -1,0 +1,19 @@
+meta {
+  name: another user's id in the NFC path is 403
+  type: http
+  seq: 22
+}
+
+get {
+  url: {{baseUrl}}/api/v1/NfcTag/{{subA}}/sit-tag-{{habitId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+assert {
+  res.status: eq 403
+}

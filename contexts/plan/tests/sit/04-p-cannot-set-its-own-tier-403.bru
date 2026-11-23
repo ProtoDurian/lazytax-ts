@@ -1,0 +1,23 @@
+meta {
+  name: P cannot set its own tier 403
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Subscription/{{subP}}/tier
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenP}}
+}
+
+body:json {
+  {"tier":"pro"}
+}
+
+assert {
+  res.status: eq 403
+}

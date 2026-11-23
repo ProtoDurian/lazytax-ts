@@ -1,0 +1,27 @@
+meta {
+  name: create a habit with a stake
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subC}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenC}}
+}
+
+body:json {
+  { "task": "flow habit", "daysOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "notificationTime": "00:00:00", "deadlineTime": "00:00:00", "stake": "5.00", "charityId": "{{charityId}}", "timezone": "UTC" }
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("habitId", res.body.habitId); bru.setVar("versionId", res.body.id);
+}

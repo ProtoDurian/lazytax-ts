@@ -1,0 +1,25 @@
+meta {
+  name: invite creates a code
+  type: http
+  seq: 12
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/invites
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("code", function () {
+    expect(res.body.code).to.have.length(10);
+  });
+}

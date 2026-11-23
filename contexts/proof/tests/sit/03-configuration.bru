@@ -1,0 +1,23 @@
+meta {
+  name: set the configuration
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Configuration/{{subA}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "timezone": "UTC" }
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,20 @@
+meta {
+  name: list own inbox
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.length: eq 0
+}

@@ -1,0 +1,19 @@
+meta {
+  name: short search is 400
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/search?q=a
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+assert {
+  res.status: eq 400
+}

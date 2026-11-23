@@ -1,0 +1,15 @@
+meta {
+  name: no token is 401
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Payment/{{subA}}/consent
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+}

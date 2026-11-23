@@ -1,0 +1,19 @@
+meta {
+  name: non-admin running the sync is 403
+  type: http
+  seq: 23
+}
+
+post {
+  url: {{baseUrl}}/api/v1/charities/sync/pledge
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 403
+}

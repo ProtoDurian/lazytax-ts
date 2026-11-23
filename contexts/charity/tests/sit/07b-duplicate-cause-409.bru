@@ -1,0 +1,23 @@
+meta {
+  name: a taken cause key is 409
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Causes
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+  {"key":"{{causeKey}}","name":"x"}
+}
+
+assert {
+  res.status: eq 409
+}

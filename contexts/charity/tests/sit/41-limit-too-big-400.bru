@@ -1,0 +1,15 @@
+meta {
+  name: limit over 100 is 400
+  type: http
+  seq: 41
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Charity?limit=101
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 400
+}

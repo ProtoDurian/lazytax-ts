@@ -1,0 +1,25 @@
+meta {
+  name: the inbox has no penalty item yet
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Inbox/{{subA}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("no penalty item before anything was missed", function () {
+    expect(res.body.filter((i) => i.kind.indexOf("penalty") === 0).length).to.equal(0);
+  });
+}

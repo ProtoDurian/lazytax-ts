@@ -1,0 +1,20 @@
+meta {
+  name: B reads own and sees none of A
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Protection/{{subB}}
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{tokenB}}
+}
+
+assert {
+  res.status: eq 200
+  res.body.userId: eq {{subB}}
+}

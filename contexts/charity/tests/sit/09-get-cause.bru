@@ -1,0 +1,15 @@
+meta {
+  name: anyone reads a cause
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Causes/{{causeId}}
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}

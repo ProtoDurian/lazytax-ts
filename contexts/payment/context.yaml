@@ -1,0 +1,7 @@
+id: ctx_y6m2r9
+name: payment
+needs: [notification.v1]
+provides: [payment.v1]
+uses: [postgres.main]
+http: { prefix: /api/v1/Payment }
+mcp: { prefix: payment }

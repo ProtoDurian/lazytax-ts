@@ -1,0 +1,23 @@
+meta {
+  name: non-admin setting causes is 403
+  type: http
+  seq: 25
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Charity/11111111-1111-1111-1111-111111111111/causes
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  {"keys":[]}
+}
+
+assert {
+  res.status: eq 403
+}

@@ -1,0 +1,23 @@
+meta {
+  name: manual cannot be bound
+  type: http
+  seq: 7
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Proof/{{subA}}/{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+body:json {
+  { "pluginKey": "manual", "settings": "{}" }
+}
+
+assert {
+  res.status: eq 400
+}

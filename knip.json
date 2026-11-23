@@ -1,0 +1,37 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": ["src/index.ts", "tools/*.ts", "tests/**/*.test.ts"],
+      "project": ["src/*.ts", "tools/**/*.ts", "tests/**/*.ts"]
+    },
+    "src/kernel": {
+      "entry": ["index.ts", "testing/index.ts"],
+      "project": ["**/*.ts"]
+    },
+    "contexts/*": {
+      "entry": ["src/register.ts", "tests/**/*.test.ts"],
+      "project": ["src/**/*.ts", "tests/**/*.ts"]
+    },
+    "contexts/*/contract": {
+      "entry": ["v1/index.ts"],
+      "project": ["**/*.ts"],
+      "ignoreDependencies": ["@lazytax/kernel"]
+    }
+  },
+  "rules": {
+    "files": "warn",
+    "exports": "warn",
+    "types": "warn",
+    "nsExports": "error",
+    "nsTypes": "error",
+    "duplicates": "error",
+    "dependencies": "warn",
+    "devDependencies": "off",
+    "optionalPeerDependencies": "off",
+    "unlisted": "error",
+    "unresolved": "error",
+    "binaries": "off",
+    "enumMembers": "off"
+  }
+}

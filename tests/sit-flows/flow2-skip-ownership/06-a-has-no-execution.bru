@@ -1,0 +1,26 @@
+meta {
+  name: A has no execution from B's skip
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{baseUrl}}/api/v1/Habit/{{subA}}/executions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenA}}
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("no execution was written for A's version", function () {
+    const rows = res.body.filter((e) => e.habitVersionId === bru.getVar("versionId"));
+    expect(rows.length).to.equal(0);
+  });
+}

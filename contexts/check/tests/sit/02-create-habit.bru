@@ -1,0 +1,27 @@
+meta {
+  name: create-habit
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/v1/Habit/{{subB}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  {"task":"SIT check","daysOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"notificationTime":"07:00:00","stake":"0","timezone":"Asia/Singapore"}
+}
+
+assert {
+  res.status: eq 200
+}
+
+script:post-response {
+  bru.setVar("checkHabitId", res.body.habitId); bru.setVar("checkVersionId", res.body.id);
+}

@@ -1,0 +1,23 @@
+meta {
+  name: binding another user's habit is 404
+  type: http
+  seq: 19
+}
+
+put {
+  url: {{baseUrl}}/api/v1/Proof/{{subB}}/{{habitId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenB}}
+}
+
+body:json {
+  { "pluginKey": "strava", "settings": "{\"sportTypes\":[\"Run\"]}" }
+}
+
+assert {
+  res.status: eq 404
+}

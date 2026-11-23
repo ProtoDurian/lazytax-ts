@@ -1,0 +1,16 @@
+meta {
+  name: no token is 401
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/api/v1/User/Me/All
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 401
+  res.body.type: eq urn:lazytax:problem:unauthenticated
+}

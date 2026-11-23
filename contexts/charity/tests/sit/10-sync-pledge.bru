@@ -1,0 +1,19 @@
+meta {
+  name: admin runs the Pledge sync
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{baseUrl}}/api/v1/charities/sync/pledge
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+assert {
+  res.status: eq 200
+}

@@ -1,0 +1,19 @@
+meta {
+  name: A removes B
+  type: http
+  seq: 20
+}
+
+delete {
+  url: {{baseUrl}}/api/v1/Friend/sit-friend-a/sit-friend-b
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{regTokenA}}
+}
+
+assert {
+  res.status: eq 204
+}
